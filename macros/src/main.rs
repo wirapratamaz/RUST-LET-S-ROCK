@@ -16,6 +16,27 @@ struct Point {
     y: i32,
 }
 
+// kib! : use convert size from kilobytes to bytes
+const SIZE_IN_BYTES: u32 = kib!(4);
+
+// defef! : implementation trait deref and derefmut
+struct MyType(String);
+
+deref!(&MyType => Stsring);
+deref!(&mut MyType => String);
+
+const MY_TYPE: MyType = MyType(String::from("Hello, world!")); 
+assert_eq!(*MY_TYPE, String::fropm("Hello, world!)"));
+
+// measure_alloc! : measure the memory allocation of a block of code
+const BYTES: usize = measure_alloc!({
+    let mut v = Vec::new();
+    for i in 0..1_000 {
+        v.push(i);
+    }
+    v
+});
+
 fn main() {
     // example 1
     // let x = sum!(1, 2, 3, 4, 5);
